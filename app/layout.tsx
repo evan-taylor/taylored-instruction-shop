@@ -32,15 +32,15 @@ export const metadata = {
 
 function NavbarSkeleton() {
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md dark:bg-neutral-900">
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
-        <div className="h-[52px] w-[180px] animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
+        <div className="h-[52px] w-[180px] animate-pulse rounded bg-neutral-200" />
         <div className="hidden gap-6 md:flex">
-          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
-          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
-          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200" />
+          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200" />
+          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200" />
         </div>
-        <div className="h-11 w-11 animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-700" />
+        <div className="h-11 w-11 animate-pulse rounded-md bg-neutral-200" />
       </div>
     </nav>
   );
@@ -64,7 +64,7 @@ export default async function RootLayout({
           rel="preconnect"
         />
       </head>
-      <body className="bg-white text-text dark:bg-neutral-900 dark:text-white">
+      <body className="bg-white text-text">
         <CartProvider cartPromise={cart}>
           <Suspense fallback={<NavbarSkeleton />}>
             <Navbar />

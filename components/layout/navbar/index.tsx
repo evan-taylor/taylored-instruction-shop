@@ -14,7 +14,7 @@ export async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md dark:bg-neutral-900">
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
         <div className="block flex-none md:hidden">
           <Suspense fallback={null}>
@@ -39,7 +39,7 @@ export async function Navbar() {
                   alt="Taylored Instruction Logo"
                   width={180}
                   height={52}
-                  className="h-auto max-h-[52px] w-auto dark:brightness-0 dark:invert"
+                  className="h-auto max-h-[52px] w-auto"
                   priority
                 />
               </div>
@@ -54,7 +54,7 @@ export async function Navbar() {
                     <Link
                       href={item.path}
                       prefetch={true}
-                      className="text-text-light transition-colors duration-200 hover:text-primary dark:text-neutral-400 dark:hover:text-white"
+                      className="text-text-light transition-colors duration-200 hover:text-primary"
                     >
                       {item.title}
                     </Link>

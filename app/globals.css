@@ -34,6 +34,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
@@ -94,24 +95,6 @@ body {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  
-  @theme {
-    --color-background: hsl(0 0% 3.9%);
-    --color-foreground: hsl(0 0% 98%);
-    --color-text: hsl(0 0% 98%);
-    --color-text-light: hsl(0 0% 80%);
-    --color-muted: hsl(0 0% 14.9%);
-    --color-muted-foreground: hsl(0 0% 63.9%);
-    --color-border: hsl(0 0% 14.9%);
-    --color-input: hsl(0 0% 14.9%);
-    --color-ring: hsl(211 60% 50%);
-  }
-}
-
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading='lazy'] {
     clip-path: inset(0.6px);
@@ -122,7 +105,7 @@ body {
 a,
 input,
 button {
-  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-neutral-900;
+  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white;
 }
 
 /* Brand button styles */
@@ -149,11 +132,4 @@ button {
 ::selection {
   background-color: hsl(211 60% 33% / 0.3);
   color: var(--color-text);
-}
-
-@media (prefers-color-scheme: dark) {
-  ::selection {
-    background-color: hsl(211 60% 50% / 0.4);
-    color: white;
-  }
 }
