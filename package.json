@@ -1,4 +1,6 @@
 {
+  "name": "taylored-instruction-shop",
+  "description": "E-commerce store for Taylored Instruction CPR training equipment and safety supplies",
   "private": true,
   "scripts": {
     "dev": "next dev",

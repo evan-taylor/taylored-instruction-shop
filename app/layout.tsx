@@ -24,9 +24,29 @@ export const metadata = {
     default: SITE_NAME!,
     template: `%s | ${SITE_NAME}`
   },
+  description:
+    'Shop professional CPR training equipment, AEDs, first aid supplies, and safety gear from Taylored Instruction.',
+  keywords: [
+    'CPR training equipment',
+    'AED',
+    'first aid supplies',
+    'safety training',
+    'CPR manikins',
+    'Taylored Instruction'
+  ],
+  authors: [{ name: 'Taylored Instruction' }],
+  creator: 'Taylored Instruction',
   robots: {
     follow: true,
     index: true
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: SITE_NAME!
+  },
+  twitter: {
+    card: 'summary_large_image'
   }
 };
 
