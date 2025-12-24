@@ -1,8 +1,9 @@
 export default {
+  // MIGRATED: Moved cacheComponents out of experimental (now stable)
+  cacheComponents: true,
   experimental: {
-    ppr: true,
-    inlineCss: true,
-    useCache: true
+    // MIGRATED: Removed ppr: true (removed in Next.js 16)
+    inlineCss: true
   },
   images: {
     formats: ['image/avif', 'image/webp'],
