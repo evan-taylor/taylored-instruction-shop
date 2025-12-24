@@ -115,7 +115,7 @@ export default function Search() {
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => query.length >= 2 && results.length > 0 && setIsOpen(true)}
           onKeyDown={handleKeyDown}
-          className="text-md w-full rounded-lg border border-neutral-200 bg-white px-4 py-2 pr-10 text-text placeholder:text-neutral-500 focus:border-primary focus:ring-1 focus:ring-primary md:text-sm"
+          className="text-md w-full rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 pr-10 text-text transition-all duration-200 placeholder:text-neutral-400 hover:bg-white focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 md:text-sm"
         />
         <div className="absolute right-0 top-0 mr-3 flex h-full items-center">
           {isPending ? (
@@ -202,11 +202,11 @@ export function SearchSkeleton() {
     <div className="relative w-full">
       <input
         placeholder="Search for products..."
-        className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm text-text placeholder:text-neutral-500 focus:border-primary focus:ring-1 focus:ring-primary"
+        className="w-full rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm text-text placeholder:text-neutral-400"
         disabled
       />
       <div className="absolute right-0 top-0 mr-3 flex h-full items-center">
-        <MagnifyingGlassIcon className="h-4 text-neutral-500" />
+        <MagnifyingGlassIcon className="h-4 text-neutral-400" />
       </div>
     </div>
   );

@@ -170,3 +170,27 @@ button {
     transform: translateY(0);
   }
 }
+
+/* Nav link hover underline effect */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: 1px;
+  transition: width 0.25s cubic-bezier(0.215, 0.61, 0.355, 1), left 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+}
