@@ -7,17 +7,25 @@ import { ProductOption, ProductVariant } from 'lib/shopify/types';
 type Combination = {
   id: string;
   availableForSale: boolean;
-  [key: string]: string | boolean;
+  imageUrl?: string;
+  [key: string]: string | boolean | undefined;
+};
+
+type GalleryImage = {
+  src: string;
+  altText: string;
 };
 
 export function VariantSelector({
   options,
-  variants
+  variants,
+  images
 }: {
   options: ProductOption[];
   variants: ProductVariant[];
+  images: GalleryImage[];
 }) {
-  const { state, updateOption } = useProduct();
+  const { state, updateOption, updateImage } = useProduct();
   const updateURL = useUpdateURL();
   const hasNoOptionsOrJustOneOption =
     !options.length || (options.length === 1 && options[0]?.values.length === 1);
@@ -29,11 +37,18 @@ export function VariantSelector({
   const combinations: Combination[] = variants.map((variant) => ({
     id: variant.id,
     availableForSale: variant.availableForSale,
+    imageUrl: variant.image?.url,
     ...variant.selectedOptions.reduce(
       (accumulator, option) => ({ ...accumulator, [option.name.toLowerCase()]: option.value }),
       {}
     )
   }));
+
+  // Find the image index for a given variant's image URL
+  const findImageIndex = (imageUrl: string | undefined): number => {
+    if (!imageUrl) return -1;
+    return images.findIndex((img) => img.src === imageUrl);
+  };
 
   return options.map((option) => (
     <form key={option.id}>
@@ -61,11 +76,28 @@ export function VariantSelector({
             // The option is active if it's in the selected options.
             const isActive = state[optionNameLowerCase] === value;
 
+            // Find the variant that matches this option combination
+            const matchingVariant = combinations.find((combination) =>
+              filtered.every(([key, value]) => combination[key] === value)
+            );
+
             return (
               <button
                 formAction={() => {
-                  const newState = updateOption(optionNameLowerCase, value);
-                  updateURL(newState);
+                  const optionState = updateOption(optionNameLowerCase, value);
+
+                  // If the matching variant has an image, scroll to it
+                  if (matchingVariant?.imageUrl) {
+                    const imageIndex = findImageIndex(matchingVariant.imageUrl);
+                    if (imageIndex !== -1) {
+                      const imageState = updateImage(imageIndex.toString());
+                      // Merge both states for the URL update
+                      updateURL({ ...optionState, ...imageState });
+                      return;
+                    }
+                  }
+
+                  updateURL(optionState);
                 }}
                 key={value}
                 aria-disabled={!isAvailableForSale}

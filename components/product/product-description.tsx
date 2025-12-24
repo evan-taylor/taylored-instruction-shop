@@ -5,6 +5,11 @@ import { ProductPrice } from './product-price';
 import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ product }: { product: Product }) {
+  const images = product.images.map((image) => ({
+    src: image.url,
+    altText: image.altText
+  }));
+
   return (
     <>
       <div className="mb-6 flex flex-col border-b border-neutral-200 pb-6">
@@ -13,7 +18,7 @@ export function ProductDescription({ product }: { product: Product }) {
           <ProductPrice product={product} />
         </div>
       </div>
-      <VariantSelector options={product.options} variants={product.variants} />
+      <VariantSelector options={product.options} variants={product.variants} images={images} />
       {product.descriptionHtml ? (
         <Prose
           className="mb-6 text-sm leading-tight text-text-light"
