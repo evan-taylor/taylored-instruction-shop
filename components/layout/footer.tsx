@@ -14,11 +14,11 @@ export default async function Footer() {
   
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
-  const skeleton = 'w-full h-6 animate-pulse rounded-sm bg-neutral-200 dark:bg-neutral-700';
+  const skeleton = 'w-full h-6 animate-pulse rounded-sm bg-neutral-200';
   const menu = await getMenu('next-js-frontend-footer-menu');
 
   return (
-    <footer className="bg-gray-100 pt-16 pb-8 text-text-light dark:bg-neutral-800 dark:text-neutral-400">
+    <footer className="border-t border-neutral-200 bg-white pt-16 pb-8 text-text-light">
       <div className="mx-auto max-w-7xl px-4">
         {/* Footer Grid */}
         <div className="mb-12 grid grid-cols-1 items-start gap-8 text-left sm:grid-cols-2 md:grid-cols-4">
@@ -26,9 +26,9 @@ export default async function Footer() {
           <div className="space-y-4">
             <Link className="flex items-center gap-2" href="/">
               <LogoSquare size="sm" />
-              <span className="font-medium uppercase text-text dark:text-white">{SITE_NAME}</span>
+              <span className="font-medium uppercase text-text">{SITE_NAME}</span>
             </Link>
-            <p className="text-sm text-gray-600 dark:text-neutral-400">
+            <p className="text-sm text-text-light">
               At Taylored Instruction, we are dedicated to providing the highest
               quality health and safety training equipment and supplies.
             </p>
@@ -36,7 +36,7 @@ export default async function Footer() {
 
           {/* Shop Links */}
           <div className="space-y-4">
-            <h3 className="mb-2 text-sm font-semibold uppercase text-text dark:text-white">
+            <h3 className="mb-2 text-sm font-semibold uppercase text-text">
               Shop
             </h3>
             <Suspense
@@ -54,10 +54,10 @@ export default async function Footer() {
 
           {/* Get Help */}
           <div className="space-y-4">
-            <h3 className="mb-2 text-sm font-semibold uppercase text-text dark:text-white">
+            <h3 className="mb-2 text-sm font-semibold uppercase text-text">
               Get Help
             </h3>
-            <ul className="space-y-2 text-sm text-gray-600 dark:text-neutral-400">
+            <ul className="space-y-2 text-sm text-text-light">
               <li>
                 <a
                   className="transition-colors duration-200 hover:text-primary"
@@ -79,13 +79,13 @@ export default async function Footer() {
 
           {/* Social & Main Site */}
           <div className="space-y-4">
-            <h3 className="mb-2 text-sm font-semibold uppercase text-text dark:text-white">
+            <h3 className="mb-2 text-sm font-semibold uppercase text-text">
               Connect
             </h3>
             <div className="flex items-center gap-4">
               <a
                 aria-label="Facebook"
-                className="text-gray-500 transition-colors duration-200 hover:text-primary"
+                className="text-text-light transition-colors duration-200 hover:text-primary"
                 href="https://www.facebook.com/tayloredinstruction.us"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -97,7 +97,7 @@ export default async function Footer() {
               </a>
               <a
                 aria-label="Instagram"
-                className="text-gray-500 transition-colors duration-200 hover:text-primary"
+                className="text-text-light transition-colors duration-200 hover:text-primary"
                 href="https://www.instagram.com/taylored.instruction/"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -122,7 +122,7 @@ export default async function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-300 pt-6 text-center text-xs text-gray-500 dark:border-neutral-700 dark:text-neutral-500">
+        <div className="border-t border-neutral-200 pt-6 text-center text-xs text-text-light">
           <p>
             &copy; {copyrightDate} Taylored Instruction. All Rights Reserved.
           </p>

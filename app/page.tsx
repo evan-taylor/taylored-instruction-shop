@@ -14,9 +14,9 @@ export const metadata = {
 function GridSkeleton() {
   return (
     <section className="mx-auto grid max-w-(--breakpoint-2xl) animate-pulse gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2">
-      <div className="aspect-square rounded-lg bg-neutral-200 md:col-span-4 md:row-span-2 dark:bg-neutral-800" />
-      <div className="aspect-square rounded-lg bg-neutral-200 md:col-span-2 md:row-span-1 dark:bg-neutral-800" />
-      <div className="aspect-square rounded-lg bg-neutral-200 md:col-span-2 md:row-span-1 dark:bg-neutral-800" />
+      <div className="aspect-square rounded-lg bg-neutral-200 md:col-span-4 md:row-span-2" />
+      <div className="aspect-square rounded-lg bg-neutral-200 md:col-span-2 md:row-span-1" />
+      <div className="aspect-square rounded-lg bg-neutral-200 md:col-span-2 md:row-span-1" />
     </section>
   );
 }
@@ -28,7 +28,7 @@ function CarouselSkeleton() {
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className="aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none rounded-lg bg-neutral-200 md:w-1/3 dark:bg-neutral-800"
+            className="aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none rounded-lg bg-neutral-200 md:w-1/3"
           />
         ))}
       </div>
@@ -38,13 +38,13 @@ function CarouselSkeleton() {
 
 function FooterSkeleton() {
   return (
-    <footer className="bg-gray-100 pt-16 pb-8 dark:bg-neutral-800">
+    <footer className="border-t border-neutral-200 bg-white pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-12 grid animate-pulse grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
-          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
-          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
-          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
-          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-32 rounded bg-neutral-200" />
+          <div className="h-32 rounded bg-neutral-200" />
+          <div className="h-32 rounded bg-neutral-200" />
+          <div className="h-32 rounded bg-neutral-200" />
         </div>
       </div>
     </footer>
