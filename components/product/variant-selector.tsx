@@ -90,9 +90,10 @@ export function VariantSelector({
                   if (matchingVariant?.imageUrl) {
                     const imageIndex = findImageIndex(matchingVariant.imageUrl);
                     if (imageIndex !== -1) {
-                      const imageState = updateImage(imageIndex.toString());
-                      // Merge both states for the URL update
-                      updateURL({ ...optionState, ...imageState });
+                      // Update the image in optimistic state
+                      updateImage(imageIndex.toString());
+                      // Manually add image to optionState (don't spread imageState as it has stale option values)
+                      updateURL({ ...optionState, image: imageIndex.toString() });
                       return;
                     }
                   }
