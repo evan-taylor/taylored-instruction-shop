@@ -7,7 +7,9 @@ type Route = {
   lastModified: string;
 };
 
-export const dynamic = 'force-dynamic';
+// MIGRATED: Removed export const dynamic = 'force-dynamic' (incompatible with Cache Components)
+// NOTE: Dynamic behavior is the default with Cache Components - no directive needed
+// This sitemap function will execute on every request automatically
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   validateEnvironmentVariables();
