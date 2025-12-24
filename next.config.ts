@@ -1,8 +1,8 @@
 export default {
-  // MIGRATED: Moved cacheComponents out of experimental (now stable)
-  cacheComponents: true,
+  // Cache Components disabled - requires architectural changes for cart/cookie handling
+  // Can be enabled later with proper Suspense boundaries for dynamic data
+  cacheComponents: false,
   experimental: {
-    // MIGRATED: Removed ppr: true (removed in Next.js 16)
     inlineCss: true
   },
   images: {

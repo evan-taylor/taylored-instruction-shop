@@ -4,6 +4,7 @@ import { WelcomeToast } from 'components/welcome-toast';
 import { getCart } from 'lib/shopify';
 import { Readex_Pro } from 'next/font/google';
 import type { ReactNode } from 'react';
+import { Suspense } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
 import { baseUrl } from 'lib/utils';
@@ -29,6 +30,22 @@ export const metadata = {
   }
 };
 
+function NavbarSkeleton() {
+  return (
+    <nav className="sticky top-0 z-50 bg-white shadow-md dark:bg-neutral-900">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
+        <div className="h-[52px] w-[180px] animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
+        <div className="hidden gap-6 md:flex">
+          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-4 w-16 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
+        </div>
+        <div className="h-11 w-11 animate-pulse rounded-md bg-neutral-200 dark:bg-neutral-700" />
+      </div>
+    </nav>
+  );
+}
+
 export default async function RootLayout({
   children
 }: {
@@ -49,7 +66,9 @@ export default async function RootLayout({
       </head>
       <body className="bg-white text-text dark:bg-neutral-900 dark:text-white">
         <CartProvider cartPromise={cart}>
-          <Navbar />
+          <Suspense fallback={<NavbarSkeleton />}>
+            <Navbar />
+          </Suspense>
           <main>
             {children}
             <Toaster closeButton />

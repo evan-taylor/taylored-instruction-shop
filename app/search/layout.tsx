@@ -5,6 +5,21 @@ import { sorting } from 'lib/constants';
 import ChildrenWrapper from './children-wrapper';
 import { Suspense } from 'react';
 
+function FooterSkeleton() {
+  return (
+    <footer className="bg-gray-100 pt-16 pb-8 dark:bg-neutral-800">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mb-12 grid animate-pulse grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
+          <div className="h-32 rounded bg-neutral-200 dark:bg-neutral-700" />
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function SearchLayout({
   children
 }: {
@@ -25,7 +40,9 @@ export default function SearchLayout({
           <FilterList list={sorting} title="Sort by" />
         </div>
       </div>
-      <Footer />
+      <Suspense fallback={<FooterSkeleton />}>
+        <Footer />
+      </Suspense>
     </>
   );
 }
