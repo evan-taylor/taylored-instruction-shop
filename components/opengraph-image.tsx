@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og';
-import LogoIcon from './icons/logo';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
 
@@ -20,13 +19,23 @@ export default async function OpengraphImage(
   const file = await readFile(join(process.cwd(), './fonts/Inter-Bold.ttf'));
   const font = Uint8Array.from(file).buffer;
 
+  // Read the logo file
+  const logoFile = await readFile(join(process.cwd(), './public/Cropped-Circular-Logo.png'));
+  const logoBase64 = `data:image/png;base64,${Buffer.from(logoFile).toString('base64')}`;
+
   return new ImageResponse(
     (
-      <div tw="flex h-full w-full flex-col items-center justify-center bg-black">
-        <div tw="flex flex-none items-center justify-center border border-neutral-700 h-[160px] w-[160px] rounded-3xl">
-          <LogoIcon width="64" height="58" fill="white" />
+      <div
+        tw="flex h-full w-full flex-col items-center justify-center"
+        style={{
+          background: 'linear-gradient(135deg, #1e5083 0%, #163f69 50%, #0f2d4a 100%)'
+        }}
+      >
+        <div tw="flex flex-none items-center justify-center bg-white h-[180px] w-[180px] rounded-3xl shadow-2xl">
+          <img src={logoBase64} width="140" height="140" alt="" />
         </div>
-        <p tw="mt-12 text-6xl font-bold text-white">{title}</p>
+        <p tw="mt-12 text-6xl font-bold text-white text-center px-12">{title}</p>
+        <p tw="mt-4 text-2xl text-white/80">Taylored Instruction Shop</p>
       </div>
     ),
     {

@@ -6,7 +6,7 @@ import { getMenu } from 'lib/shopify';
 import { connection } from 'next/server';
 import { Suspense } from 'react';
 
-const { COMPANY_NAME, SITE_NAME } = process.env;
+const { SITE_NAME } = process.env;
 
 export default async function Footer() {
   // Access connection() before using new Date() to mark this as dynamic
@@ -16,57 +16,115 @@ export default async function Footer() {
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse rounded-sm bg-neutral-200 dark:bg-neutral-700';
   const menu = await getMenu('next-js-frontend-footer-menu');
-  const copyrightName = COMPANY_NAME || SITE_NAME || '';
 
   return (
-    <footer className="text-sm text-neutral-500 dark:text-neutral-400">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
-        <div>
-          <Link className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
-            <LogoSquare size="sm" />
-            <span className="uppercase">{SITE_NAME}</span>
-          </Link>
-        </div>
-        <Suspense
-          fallback={
-            <div className="flex h-[188px] w-[200px] flex-col gap-2">
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
+    <footer className="bg-gray-100 pt-16 pb-8 text-text-light dark:bg-neutral-800 dark:text-neutral-400">
+      <div className="mx-auto max-w-7xl px-4">
+        {/* Footer Grid */}
+        <div className="mb-12 grid grid-cols-1 items-start gap-8 text-left sm:grid-cols-2 md:grid-cols-4">
+          {/* About Us */}
+          <div className="space-y-4">
+            <Link className="flex items-center gap-2" href="/">
+              <LogoSquare size="sm" />
+              <span className="font-medium uppercase text-text dark:text-white">{SITE_NAME}</span>
+            </Link>
+            <p className="text-sm text-gray-600 dark:text-neutral-400">
+              At Taylored Instruction, we are dedicated to providing the highest
+              quality health and safety training equipment and supplies.
+            </p>
+          </div>
+
+          {/* Shop Links */}
+          <div className="space-y-4">
+            <h3 className="mb-2 text-sm font-semibold uppercase text-text dark:text-white">
+              Shop
+            </h3>
+            <Suspense
+              fallback={
+                <div className="flex flex-col gap-2">
+                  <div className={skeleton} />
+                  <div className={skeleton} />
+                  <div className={skeleton} />
+                </div>
+              }
+            >
+              <FooterMenu menu={menu} />
+            </Suspense>
+          </div>
+
+          {/* Get Help */}
+          <div className="space-y-4">
+            <h3 className="mb-2 text-sm font-semibold uppercase text-text dark:text-white">
+              Get Help
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-600 dark:text-neutral-400">
+              <li>
+                <a
+                  className="transition-colors duration-200 hover:text-primary"
+                  href="mailto:info@tayloredinstruction.com"
+                >
+                  info@tayloredinstruction.com
+                </a>
+              </li>
+              <li>
+                <a
+                  className="transition-colors duration-200 hover:text-primary"
+                  href="tel:3606588199"
+                >
+                  (360) 658-8199
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social & Main Site */}
+          <div className="space-y-4">
+            <h3 className="mb-2 text-sm font-semibold uppercase text-text dark:text-white">
+              Connect
+            </h3>
+            <div className="flex items-center gap-4">
+              <a
+                aria-label="Facebook"
+                className="text-gray-500 transition-colors duration-200 hover:text-primary"
+                href="https://www.facebook.com/tayloredinstruction.us"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <title>Facebook</title>
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              <a
+                aria-label="Instagram"
+                className="text-gray-500 transition-colors duration-200 hover:text-primary"
+                href="https://www.instagram.com/taylored.instruction/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <title>Instagram</title>
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </a>
             </div>
-          }
-        >
-          <FooterMenu menu={menu} />
-        </Suspense>
-        <div className="md:ml-auto">
-          <a
-            className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white"
-            aria-label="Deploy on Vercel"
-            href="https://vercel.com/templates/next.js/nextjs-commerce"
-          >
-            <span className="px-3">▲</span>
-            <hr className="h-full border-r border-neutral-200 dark:border-neutral-700" />
-            <span className="px-3">Deploy</span>
-          </a>
+            <div className="pt-2">
+              <a
+                href="https://tayloredinstruction.com"
+                className="text-sm text-primary transition-colors duration-200 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit our main site →
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 min-[1320px]:px-0">
+
+        {/* Copyright */}
+        <div className="border-t border-gray-300 pt-6 text-center text-xs text-gray-500 dark:border-neutral-700 dark:text-neutral-500">
           <p>
-            &copy; {copyrightDate} {copyrightName}
-            {copyrightName.length && !copyrightName.endsWith('.') ? '.' : ''} All rights reserved.
-          </p>
-          <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
-          <p>
-            <a href="https://github.com/vercel/commerce">View the source</a>
-          </p>
-          <p className="md:ml-auto">
-            <a href="https://vercel.com" className="text-black dark:text-white">
-              Created by ▲ Vercel
-            </a>
+            &copy; {copyrightDate} Taylored Instruction. All Rights Reserved.
           </p>
         </div>
       </div>

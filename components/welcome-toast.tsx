@@ -8,23 +8,24 @@ export function WelcomeToast() {
     // ignore if screen height is too small
     if (window.innerHeight < 650) return;
     if (!document.cookie.includes('welcome-toast=2')) {
-      toast('🛍️ Welcome to Next.js Commerce!', {
+      toast('🛍️ Welcome to Taylored Instruction Shop!', {
         id: 'welcome-toast',
-        duration: Infinity,
+        duration: 8000,
         onDismiss: () => {
           document.cookie = 'welcome-toast=2; max-age=31536000; path=/';
         },
         description: (
           <>
-            This is a high-performance, SSR storefront powered by Shopify, Next.js, and Vercel.{' '}
+            Shop professional CPR training equipment, AEDs, and safety supplies.{' '}
             <a
-              href="https://vercel.com/templates/next.js/nextjs-commerce"
-              className="text-blue-600 hover:underline"
+              href="https://tayloredinstruction.com"
+              className="text-primary hover:underline"
               target="_blank"
+              rel="noopener noreferrer"
             >
-              Deploy your own
+              Visit our main site
             </a>
-            .
+            {' '}to register for classes.
           </>
         )
       });
