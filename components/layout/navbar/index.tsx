@@ -15,64 +15,69 @@ export async function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 lg:px-6">
+        {/* Mobile menu button */}
         <div className="block flex-none md:hidden">
           <Suspense fallback={null}>
             <MobileMenu menu={menu} />
           </Suspense>
         </div>
-        <div className="flex w-full items-center">
-          <div className="flex w-full md:w-1/3">
-            <Link
-              href="/"
-              prefetch={true}
-              className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
-            >
-              {/* Mobile: Show square logo */}
-              <div className="md:hidden">
-                <LogoSquare />
-              </div>
-              {/* Desktop: Show horizontal logo */}
-              <div className="hidden md:block">
-                <Image
-                  src="/horizontal-logo-black.png"
-                  alt="Taylored Instruction Logo"
-                  width={180}
-                  height={52}
-                  className="h-auto max-h-[52px] w-auto"
-                  priority
-                />
-              </div>
-              <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:hidden">
-                {SITE_NAME}
-              </div>
-            </Link>
-            {menu.length ? (
-              <ul className="hidden gap-6 text-sm md:flex md:items-center">
-                {menu.map((item: Menu) => (
-                  <li key={item.title}>
-                    <Link
-                      href={item.path}
-                      prefetch={true}
-                      className="text-text-light transition-colors duration-200 hover:text-primary"
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+
+        {/* Logo */}
+        <Link
+          href="/"
+          prefetch={true}
+          className="flex flex-shrink-0 items-center"
+        >
+          {/* Mobile: Show square logo */}
+          <div className="md:hidden">
+            <LogoSquare />
           </div>
-          <div className="hidden justify-center md:flex md:w-1/3">
-            <Suspense fallback={<SearchSkeleton />}>
-              <Search />
-            </Suspense>
+          {/* Desktop: Show horizontal logo - now bigger */}
+          <div className="hidden md:block">
+            <Image
+              src="/horizontal-logo-black.png"
+              alt="Taylored Instruction Logo"
+              width={220}
+              height={64}
+              className="h-auto max-h-[64px] w-auto"
+              priority
+            />
           </div>
-          <div className="flex justify-end md:w-1/3">
-            <Suspense fallback={null}>
-              <CartModal />
-            </Suspense>
-          </div>
+        </Link>
+
+        {/* Navigation menu */}
+        {menu.length ? (
+          <ul className="hidden gap-6 text-sm md:flex md:items-center">
+            {menu.map((item: Menu) => (
+              <li key={item.title}>
+                <Link
+                  href={item.path}
+                  prefetch={true}
+                  className="whitespace-nowrap text-neutral-600 transition-colors duration-200 hover:text-primary"
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        {/* Spacer to push search and cart to the right */}
+        <div className="flex-1" />
+
+        {/* Search - now on the right */}
+        <div className="hidden md:block md:w-80 lg:w-96">
+          <Suspense fallback={<SearchSkeleton />}>
+            <Search />
+          </Suspense>
+        </div>
+
+        {/* Cart */}
+        <div className="flex-shrink-0">
+          <Suspense fallback={null}>
+            <CartModal />
+          </Suspense>
         </div>
       </div>
     </nav>

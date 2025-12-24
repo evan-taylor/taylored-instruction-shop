@@ -96,4 +96,4 @@ Deploy to [Vercel](https://vercel.com) for optimal Next.js performance:
 
 ---
 
-© 2023-2025 Taylored Instruction. All Rights Reserved.
+© 2026 Taylored Instruction. All Rights Reserved.

@@ -20,22 +20,31 @@ export function GridTileImage({
   return (
     <div
       className={clsx(
-        'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-primary',
+        'group relative flex h-full w-full items-center justify-center overflow-hidden',
+        'rounded-2xl bg-neutral-100',
+        'shadow-[0_2px_8px_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.06)]',
+        'ring-1 ring-black/5',
         {
-          relative: label,
-          'border-2 border-primary': active,
-          'border-neutral-200': !active
+          'ring-2 ring-primary ring-offset-2': active
         }
       )}
+      style={{
+        willChange: isInteractive ? 'transform' : undefined
+      }}
     >
+      {/* Subtle inner glow */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/50 via-transparent to-transparent" />
+
       {props.src ? (
         <Image
           className={clsx('relative h-full w-full object-contain', {
-            'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
+            'transition-transform duration-300 ease-[cubic-bezier(.165,.84,.44,1)] group-hover:scale-[1.03]':
+              isInteractive
           })}
           {...props}
         />
       ) : null}
+
       {label ? (
         <Label
           title={label.title}

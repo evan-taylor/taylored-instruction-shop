@@ -270,3 +270,25 @@ export type ShopifyProductsOperation = {
     sortKey?: string;
   };
 };
+
+export type SearchResultProduct = {
+  id: string;
+  title: string;
+  handle: string;
+  priceRange: {
+    minVariantPrice: Money;
+  };
+  featuredImage: Image | null;
+};
+
+export type ShopifyPredictiveSearchOperation = {
+  data: {
+    predictiveSearch: {
+      products: SearchResultProduct[];
+    };
+  };
+  variables: {
+    query: string;
+    limit: number;
+  };
+};

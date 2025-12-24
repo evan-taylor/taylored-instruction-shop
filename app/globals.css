@@ -133,3 +133,40 @@ button {
   background-color: hsl(211 60% 33% / 0.3);
   color: var(--color-text);
 }
+
+/* Enhanced card hover effects - only on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  .group\/card:hover > div {
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      0 16px 48px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .group\/card > div {
+    transition:
+      box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .group\/card > div,
+  .group\/card > div img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Search dropdown animation */
+@keyframes searchDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

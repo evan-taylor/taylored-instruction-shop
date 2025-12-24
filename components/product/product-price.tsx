@@ -23,9 +23,9 @@ export function ProductPrice({ product }: { product: Product }) {
     const defaultVariant = variants.length === 1 ? variants[0] : undefined;
     const variant = selectedVariant || defaultVariant;
 
-    // Use variant price if available, otherwise fall back to max price range
-    return variant?.price || priceRange.maxVariantPrice;
-  }, [variants, state, priceRange.maxVariantPrice]);
+    // Use variant price if available, otherwise fall back to min price range
+    return variant?.price || priceRange.minVariantPrice;
+  }, [variants, state, priceRange.minVariantPrice]);
 
   return (
     <Price
