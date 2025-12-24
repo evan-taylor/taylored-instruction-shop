@@ -14,5 +14,14 @@ export default {
         pathname: '/s/files/**'
       }
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/products/:handle',
+        destination: '/product/:handle',
+        permanent: true
+      }
+    ];
   }
 };
